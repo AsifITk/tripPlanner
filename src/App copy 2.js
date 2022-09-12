@@ -34,7 +34,7 @@ function App() {
             element={<Form userId={userId.current} user={user} />}
           />
           <Route path="signup" element={<Signup />} />
-          <Route path="/:user/alltrips/:id" element={<Tripdetails user={user} />} />
+          <Route path="alltrips/:id" element={<Tripdetails user={user} />} />
           <Route path="tripdetails" element={<Tripdetails />} />
         </Routes>
       </div>
