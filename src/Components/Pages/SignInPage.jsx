@@ -61,6 +61,7 @@ export default function Example({ userId, setUser }) {
                                     console.log(user.uid);
                                     userId = user.uid;
                                     setUser(user.uid);
+                                    localStorage.setItem('currUser', user.uid)
                                     goTo(`/${user.uid}`);
                                     // ...
                                 })

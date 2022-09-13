@@ -12,9 +12,15 @@ import {
 } from "firebase/firestore";
 
 import { db } from "../../config";
+import { useNavigate } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 export default function Form({ userId, user }) {
 
-    console.log(user);
+    let currUser = localStorage.getItem('currUser');
+    console.log(currUser);
+
+
+    console.log(user)
 
     const accessToken =
         "pk.eyJ1IjoiYXJuYXZwdXJpIiwiYSI6ImNrZHNhb3ppYTBkNDYyeHFza3diMXZtdnkifQ.fCuBiUZ9JjgUbBlaBDvPrw";
@@ -29,8 +35,14 @@ export default function Form({ userId, user }) {
     let status = useRef();
     let [place, setPlace] = useState([]);
     let [show, setShow] = useState(true);
+    let parms = useParams();
+
+
+    const goTo = useNavigate();
+    console.log(parms);
 
     let fetchLocations = async (query) => {
+
         const response = await fetch(
             `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?access_token=${accessToken}`
         );
@@ -56,7 +68,7 @@ export default function Form({ userId, user }) {
         console.log(description.current.value);
         console.log(status.current.value);
 
-        await setDoc(doc(db, "users", user, "places", location.current.value), {
+        await setDoc(doc(db, "users", currUser, "places", location.current.value), {
             location: locations.current,
             title: title.current.value,
             date: date.current.value,
@@ -64,6 +76,12 @@ export default function Form({ userId, user }) {
             description: description.current.value,
             status: status.current.value,
         });
+        // goTo(`/${userRef.current.user.uid}`)
+        goTo(`/${currUser}`)
+        console.log(user);
+
+
+
     };
 
 

@@ -1,7 +1,7 @@
 
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Form from "./Components/Pages/Plan";
+import Form from "./Components/Pages/Form";
 import Example from "./Components/Pages/SignInPage";
 import Signup from "./Components/Pages/Signup";
 import Alltrips from "./Components/Pages/Alltrips";
@@ -30,7 +30,7 @@ function App() {
             }
           />
           <Route
-            path="plan"
+            path="/plan"
             element={<Form userId={userId.current} user={user} />}
           />
           <Route path="signup" element={<Signup />} />

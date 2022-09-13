@@ -17,19 +17,34 @@ function Alltrips({ userId, user, setUser }) {
     let getData = async () => {
 
 
-        const docRef = doc(db, "users", `${userId}`);
-        const docSnap = await getDoc(docRef);
-        console.log(docSnap);
+        // const docRef = doc(db, "users", `${userId}`);
+        // const docSnap = await getDoc(docRef);
+        // console.log(docSnap);
 
 
-        if (docSnap.exists()) {
-            setTrips(docSnap.data().Alltour);
-            console.log(trips);
+        // if (docSnap.exists()) {
+        //     setTrips(docSnap.data().Alltour);
+        //     console.log(trips);
 
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
+        // } else {
+        //     // doc.data() will be undefined in this case
+        //     console.log("No such document!");
+        // }
+
+
+
+
+
+        const querySnapshot = await getDocs(collection(db, "users", `${userId}`, 'places'));
+        let newObj = {};
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            newObj[doc.id] = doc.data();
+            // console.log(doc.id, " => ", doc.data());
+
+        });
+        setTrips(newObj)
+        console.log(newObj);
 
     }
 
