@@ -58,11 +58,11 @@ function Alltrips({ userId, user, setUser }) {
     return (
         <>
             <div className='alltrips-head'>ALL Trips Here</div>
-            <button onClick={() => goTo('/plan')}>Add A Trip</button >
+            <div className="addTripDiv"> <button className='addTrip' onClick={() => goTo('/plan')}>Add A Trip</button ></div>
             <div className='trips-details'>
 
-                <h3>Upcoming Trips</h3>
-                <button onClick={(e) => { getData() }}> this is a button</button>
+
+                <button onClick={(e) => { getData() }}> Refresh</button>
                 {/* <div className='alltrips' >
                     <Tripcard />
                     <Tripcard />

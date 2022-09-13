@@ -6,7 +6,8 @@ function Tripcard({ trip, img, use }) {
     console.log(use);
     return (
         <div className="trip-card" onClick={() => goTo(`alltrips/${use}`)}>
-            < div className="max-w-2xl mx-auto" >
+            {/* < div className="max-w-2xl mx-auto" > */}
+            < div className="trip-card" >
                 <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
                         <img

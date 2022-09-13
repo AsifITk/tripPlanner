@@ -57,6 +57,7 @@ function Signup() {
                                 console.log("buttonclicked");
 
                                 userRef.current = await createUserWithEmailAndPassword(auth, email, password)
+                                localStorage.setItem('currUser', userRef.current.user.uid)
                                 console.log(userRef.current.user.uid);
 
                                 await setDoc(doc(db, "users", userRef.current.user.uid),

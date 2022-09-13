@@ -28,6 +28,7 @@ export default function Form({ userId, user }) {
 
     let location = useRef([]);
     let locations = useRef([]);
+    let [locationAll, setLocation] = useState(undefined);
     let title = useRef();
     let date = useRef();
     let enddate = useRef();
@@ -42,6 +43,8 @@ export default function Form({ userId, user }) {
     console.log(parms);
 
     let fetchLocations = async (query) => {
+        setShow(true)
+
 
         const response = await fetch(
             `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?access_token=${accessToken}`
@@ -49,12 +52,14 @@ export default function Form({ userId, user }) {
         const data = await response.json();
         setPlace(data.features);
 
+
         return data.features;
     };
 
     const addToLocations = (loc) => {
         console.log(locations);
         locations.current.push(loc);
+        setLocation(() => locations.current)
         setShow(false)
         console.log(locations.current);
     };
@@ -92,11 +97,15 @@ export default function Form({ userId, user }) {
                 <h1>Plan Your Trip</h1>
             </div>
             <div className="details">
-                <div>{locations.current.map((loc) => {
-                    return <div key={Math.random()}>{loc.place_name}</div>
+                {console.log(locationAll)
+
+                }
+                {locationAll !== undefined ? (<div>{locationAll.map((loc) => {
+                    return <div key={Math.random()}>{loc}</div>
                 })
 
-                }</div>
+                }</div>) : <div></div>
+                }
 
             </div>
             <form>
